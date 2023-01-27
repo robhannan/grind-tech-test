@@ -74,7 +74,7 @@ class SurveyCard extends Component {
             </SurveyDescription>
           </SurveyText>
           <Image
-            src="/gift.png"
+            src="/gift.svg"
             alt="Survey icon"
             width={80}
             height={80}

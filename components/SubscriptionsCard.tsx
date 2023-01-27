@@ -5,7 +5,7 @@ import SubscriptionDetails from "./SubscriptionDetails";
 
 interface CardProps {
   portrait?: Boolean;
-}
+};
 
 const Card = styled.div<CardProps>`
   ${props => !props.portrait && `
@@ -45,8 +45,11 @@ const Description = styled.p<CardProps>`
   `}
 `;
 
-const SubscriptionCard = styled.div`
+const SubscriptionCard = styled.div<CardProps>`
   border-radius: 8px;
+  ${props => !props.portrait && `
+    overflow: hidden;
+  `}
 `;
 
 interface Props {
@@ -59,10 +62,10 @@ const description =
 class SubscriptionsCard extends Component<Props> {
   render() {
     return (
-      <Card portrait={this.props.portrait}>
-        <SubscriptionsHeader portrait={this.props.portrait}>Subscriptions</SubscriptionsHeader>
-        <Description portrait={this.props.portrait}>{description}</Description>
-        <SubscriptionCard>
+      <Card {...this.props}>
+        <SubscriptionsHeader {...this.props}>Subscriptions</SubscriptionsHeader>
+        <Description {...this.props}>{description}</Description>
+        <SubscriptionCard {...this.props}>
           {this.props.subscriptions.map((subscription, index) => (
             <SubscriptionDetails subscription={subscription} key={index} />
           ))}

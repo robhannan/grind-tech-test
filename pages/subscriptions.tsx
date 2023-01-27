@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SubscriptionsCard from "@/components/SubscriptionsCard";
 import SurveyCard from "@/components/SurveyCard";
 import { useMediaQuery } from "react-responsive";
+import Router from "next/router";
 
 const PageTemplate = styled.div`
   display: flex;
@@ -35,21 +36,14 @@ const Greeting = styled.h1`
   color: var(--grind-charcoal);
 `;
 
-const PinkHeader = styled.div`
+interface Props {
+  portrait?: Boolean;
+};
+
+const PinkHeader = styled.div<Props>`
   position: absolute;
   width: 100%;
-  height: 14.875rem;
-  left: 0px;
-  top: -1px;
-  z-index: 1;
-
-  background: var(--grind-pink);
-`;
-
-const PortraitHeader = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 4.75rem;
+  height:  ${props => props.portrait ? '4.75rem' : '14.875rem'};
   left: 0px;
   top: -1px;
   z-index: 1;
@@ -84,14 +78,19 @@ const SubscriptionPage = () => {
   };
 
   useEffect(() => {
-    getSubscriptionData();
+    if (!localStorage.getItem("token")) {
+      Router.push('/login')
+    }
+    else {
+      getSubscriptionData();
+    }
   }, []);
 
   if (data[0]) {
     if (!isPortrait) {
       return (
         <>
-          <PinkHeader />
+          <PinkHeader/>
           <PageTemplate>
             <RowWrapper>
               <ColumnWrapper>
@@ -112,7 +111,7 @@ const SubscriptionPage = () => {
     } else {
       return (
         <>
-          <PortraitHeader />
+          <PinkHeader portrait/>
           <PageTemplate>
             <Navbar user={data[0].shipping_address.first_name} portrait />
             <SubscriptionsCard subscriptions={data} portrait />

@@ -47,7 +47,7 @@ class Navbar extends Component<Props> {
         {this.props.portrait &&
           <MenuWrapper><Menu/></MenuWrapper> 
         }
-        <LogoWrapper portrait={this.props.portrait}>
+        <LogoWrapper {...this.props}>
           <Image
             src="/logo.svg"
             alt="Grind Logo"
