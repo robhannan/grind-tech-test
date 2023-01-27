@@ -48,6 +48,7 @@ const Button = styled.button`
   height: 2.938rem;
   border-radius: 4px;
   margin-right: 1rem;
+  cursor: pointer;
 `;
 
 const PrimaryButton = styled(Button)`

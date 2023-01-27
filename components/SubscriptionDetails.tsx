@@ -39,6 +39,7 @@ const Button = styled.button`
   line-height: 1.063rem;
   letter-spacing: 0em;
   text-align: center;
+  cursor: pointer;
 `;
 
 const SubscriptionHeader = styled.span`
