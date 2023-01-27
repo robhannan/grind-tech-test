@@ -17,12 +17,12 @@ const Card = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
-`
+`;
 
 const SurveyText = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const SurveyHeader = styled.h2`
   font-family: Apercu Pro;
@@ -32,7 +32,7 @@ const SurveyHeader = styled.h2`
   letter-spacing: -0.01em;
   text-align: left;
   margin-bottom: 0.5rem;
-`
+`;
 
 const SurveyDescription = styled.p`
   font-size: 0.938rem;
@@ -40,26 +40,25 @@ const SurveyDescription = styled.p`
   line-height: 1.25rem;
   letter-spacing: 0rem;
   text-align: left;
-`
+`;
 
-const PrimaryButton = styled.button`
+const Button = styled.button`
   padding: 0.938rem 1.25rem 0.75rem;
   width: 7.75rem;
   height: 2.938rem;
-  background: var(--grind-charcoal);
-  color: var(--grind-white);
   border-radius: 4px;
   margin-right: 1rem;
-`
+`;
 
-const SecondaryButton = styled.button`
-  padding: 0.938rem 1.25rem 0.75rem;
-  width: 7.75rem;
-  height: 2.938rem;
+const PrimaryButton = styled(Button)`
+  background: var(--grind-charcoal);
+  color: var(--grind-white);
+`;
+
+const SecondaryButton = styled(Button)`
   background: var(--grind-white);
   color: var(--grind-charcoal);
-  border-radius: 4px;
-`
+`;
 
 class SurveyCard extends Component {
   render(){
