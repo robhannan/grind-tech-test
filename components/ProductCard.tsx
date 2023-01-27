@@ -7,10 +7,9 @@ const Card = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 16px;
+  padding: 1rem;
 
-  width: 565px;
-  height: 112px;
+  height: 7rem;
 
   background: var(--grind-white);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -20,41 +19,41 @@ const Card = styled.div`
 const ImageWrapper = styled.div`
   border-radius: 4px;
   overflow: hidden;
-  margin: 16px;
+  margin: 1rem;
 `
 
 const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: space-between;
-  height: 80px;
+  height: 5rem;
 `
 
 const ProductName = styled.h3`
   font-family: Apercu Pro;
-  font-size: 15px;
+  font-size: 0.938rem;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 1.25rem;
   letter-spacing: 0em;
   text-align: left;
   margin: 0;
 `
 
 const ProductPrice = styled.p`
-  margin-top: 8px;
-  margin-bottom: 4px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
 `
 
 const ProductDescription = styled.p`
-  font-size: 15px;
+  font-size: 0.938rem;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.25rem;
   letter-spacing: 0em;
   margin: 0;
 `
 
 interface Props {
-    product: Product
+    product: Product;
 };
  
 class ProductCard extends Component<Props> {

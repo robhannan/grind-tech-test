@@ -3,12 +3,12 @@ import { Component } from 'react';
 import styled from "styled-components";
 
 const Card = styled.div`
-  height: 191px;
-  width: 371px;
+  height: 11.938rem;
+  width: 23.188;
   border-radius: 8px;
   background-color: var(--grind-grey-4);
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,36 +26,36 @@ const SurveyText = styled.div`
 
 const SurveyHeader = styled.h2`
   font-family: Apercu Pro;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 25px;
+  line-height: 1.563rem;
   letter-spacing: -0.01em;
   text-align: left;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 `
 
-const Body15Regular = styled.p`
-  font-size: 15px;
+const SurveyDescription = styled.p`
+  font-size: 0.938rem;
   font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0em;
+  line-height: 1.25rem;
+  letter-spacing: 0rem;
   text-align: left;
 `
 
 const PrimaryButton = styled.button`
-  padding: 15px 20px 12px;
-  width: 124px;
-  height: 47px;
+  padding: 0.938rem 1.25rem 0.75rem;
+  width: 7.75rem;
+  height: 2.938rem;
   background: var(--grind-charcoal);
   color: var(--grind-white);
   border-radius: 4px;
-  margin-right: 16px;
+  margin-right: 1rem;
 `
 
 const SecondaryButton = styled.button`
-  padding: 15px 20px 12px;
-  width: 124px;
-  height: 47px;
+  padding: 0.938rem 1.25rem 0.75rem;
+  width: 7.75rem;
+  height: 2.938rem;
   background: var(--grind-white);
   color: var(--grind-charcoal);
   border-radius: 4px;
@@ -70,9 +70,9 @@ class SurveyCard extends Component {
             <SurveyHeader>
               How’s your coffee?
             </SurveyHeader>
-            <Body15Regular>
+            <SurveyDescription>
               Let us know and get 15% off your next subscription order!
-            </Body15Regular>
+            </SurveyDescription>
           </SurveyText>
           <Image
             src="/gift.png"

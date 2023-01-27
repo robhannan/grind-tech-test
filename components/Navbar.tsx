@@ -1,42 +1,70 @@
 import { Component } from 'react';
 import Image from 'next/image'
-import { AccountCircleOutlined, ExpandMoreOutlined } from '@mui/icons-material';
+import { AccountCircleOutlined, ExpandMoreOutlined, Menu } from '@mui/icons-material';
 import styled from "styled-components";
 
 const NavbarBlock = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding-right: 15px;
+  justify-content: center;
+  background-color: var(--grind-pink);
 `;
 
 const ProfileButton = styled.div`
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const ProfileName = styled.span`
+  margin-left: 1rem;
+  margin-right: 1rem;
+`
+
+interface LogoProps {
+  portrait?: Boolean;
+};
+
+const LogoWrapper = styled.div<LogoProps>`
+  display: flex;
+  flex: 1;
+  justify-content: ${props => props.portrait ? 'center' : 'flex-start'};
+`;
+
+const MenuWrapper = styled.div<LogoProps>`
+  margin-left: 1rem;
 `;
 
 interface Props {
-    user: String
+    user: String;
+    portrait?: Boolean;
 };
  
 class Navbar extends Component<Props> {
   render(){
     return (
       <NavbarBlock>
-         <Image
+        {this.props.portrait &&
+          <MenuWrapper><Menu/></MenuWrapper> 
+        }
+        <LogoWrapper portrait={this.props.portrait}>
+          <Image
             src="/logo.svg"
             alt="Grind Logo"
             width={100}
             height={20}
           />
+        </LogoWrapper>
+        {!this.props.portrait &&
           <ProfileButton>
             <AccountCircleOutlined/>
-            {this.props.user}
+            <ProfileName>{this.props.user}</ProfileName>
             <ExpandMoreOutlined/>
           </ProfileButton>
-          
+        }
       </NavbarBlock>
-  )}
+    )
+  }
 };
  
 export default Navbar;

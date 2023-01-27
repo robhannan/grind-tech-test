@@ -4,32 +4,32 @@ import Navbar from "@/components/Navbar";
 import styled from "styled-components";
 import SubscriptionsCard from "@/components/SubscriptionsCard";
 import SurveyCard from "@/components/SurveyCard";
+import { useMediaQuery } from "react-responsive";
 
 const PageTemplate = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 5%;
-  padding-top: 30px;
+  padding-top: 1.875rem;
   position: relative;
   z-index: 2;
 `;
 
-const PageContent = styled.div`
+const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
-const CardWrapper = styled.div`
+const RowWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-`
+`;
 
 const Greeting = styled.h1`
   font-family: Argent CF;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 400;
-  line-height: 48px;
+  line-height: 3rem;
   letter-spacing: 0em;
   text-align: left;
   color: var(--grind-charcoal);
@@ -38,18 +38,33 @@ const Greeting = styled.h1`
 const PinkHeader = styled.div`
   position: absolute;
   width: 100%;
-  height: 238px;
+  height: 14.875rem;
   left: 0px;
   top: -1px;
   z-index: 1;
 
   background: var(--grind-pink);
-`
+`;
+
+const PortraitHeader = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 4.75rem;
+  left: 0px;
+  top: -1px;
+  z-index: 1;
+
+  background: var(--grind-pink);
+`;
 
 const SubscriptionPage = () => {
+  const isPortrait = useMediaQuery({
+    query: "(orientation: portrait)",
+  });
+
   const [data, setData] = useState([] as any[]);
 
-  const handleLogin = async () => {
+  const getSubscriptionData = async () => {
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     };
@@ -69,29 +84,42 @@ const SubscriptionPage = () => {
   };
 
   useEffect(() => {
-    handleLogin();
+    getSubscriptionData();
   }, []);
 
   if (data[0]) {
-    return (
-      <>
-      <PinkHeader/>
-        <PageTemplate>
-          <CardWrapper>
-            <PageContent>
-            <Navbar user={data[0].shipping_address.first_name} />
-              <Greeting>
-                Fancy seeing you here {data[0].shipping_address.first_name}
-              </Greeting>
-              <CardWrapper>
-                <SubscriptionsCard subscriptions={data} />
-                <SurveyCard/>
-              </CardWrapper>
-            </PageContent>
-          </CardWrapper>
-        </PageTemplate>
-      </>
-    );
+    if (!isPortrait) {
+      return (
+        <>
+          <PinkHeader />
+          <PageTemplate>
+            <RowWrapper>
+              <ColumnWrapper>
+              {/* Obviously this isn't the actual name but it'll do */}
+                <Navbar user={data[0].shipping_address.first_name} />
+                <Greeting>
+                  Fancy seeing you here {data[0].shipping_address.first_name}
+                </Greeting>
+                <RowWrapper>
+                  <SubscriptionsCard subscriptions={data} />
+                  <SurveyCard />
+                </RowWrapper>
+              </ColumnWrapper>
+            </RowWrapper>
+          </PageTemplate>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <PortraitHeader />
+          <PageTemplate>
+            <Navbar user={data[0].shipping_address.first_name} portrait />
+            <SubscriptionsCard subscriptions={data} portrait />
+          </PageTemplate>
+        </>
+      );
+    }
   } else {
     return <div>Loading...</div>;
   }

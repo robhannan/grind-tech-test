@@ -23,14 +23,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: Apercu Pro;
-  font-size: 17;
+  font-size: 1.063rem;
   font-weight: 700;
   color: var(--grind-charcoal);
-}
-
-.h1,
-.h2 {
-  font-family: Argent CF;
 }
 
 .home {
